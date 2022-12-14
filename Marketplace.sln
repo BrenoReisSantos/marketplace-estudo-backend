@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B37661B8-101
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Api", "src\Marketplace.Api\Marketplace.Api.csproj", "{8B0B8095-7AC9-4866-B023-A27370490F4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace", "src\Marketplace\Marketplace.csproj", "{03F9F89B-8EF1-4E82-B5B1-DA5F3DDC153B}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,8 +34,21 @@ Global
 		{8B0B8095-7AC9-4866-B023-A27370490F4F}.Release|x64.Build.0 = Release|Any CPU
 		{8B0B8095-7AC9-4866-B023-A27370490F4F}.Release|x86.ActiveCfg = Release|Any CPU
 		{8B0B8095-7AC9-4866-B023-A27370490F4F}.Release|x86.Build.0 = Release|Any CPU
+		{03F9F89B-8EF1-4E82-B5B1-DA5F3DDC153B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03F9F89B-8EF1-4E82-B5B1-DA5F3DDC153B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03F9F89B-8EF1-4E82-B5B1-DA5F3DDC153B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{03F9F89B-8EF1-4E82-B5B1-DA5F3DDC153B}.Debug|x64.Build.0 = Debug|Any CPU
+		{03F9F89B-8EF1-4E82-B5B1-DA5F3DDC153B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{03F9F89B-8EF1-4E82-B5B1-DA5F3DDC153B}.Debug|x86.Build.0 = Debug|Any CPU
+		{03F9F89B-8EF1-4E82-B5B1-DA5F3DDC153B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03F9F89B-8EF1-4E82-B5B1-DA5F3DDC153B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03F9F89B-8EF1-4E82-B5B1-DA5F3DDC153B}.Release|x64.ActiveCfg = Release|Any CPU
+		{03F9F89B-8EF1-4E82-B5B1-DA5F3DDC153B}.Release|x64.Build.0 = Release|Any CPU
+		{03F9F89B-8EF1-4E82-B5B1-DA5F3DDC153B}.Release|x86.ActiveCfg = Release|Any CPU
+		{03F9F89B-8EF1-4E82-B5B1-DA5F3DDC153B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8B0B8095-7AC9-4866-B023-A27370490F4F} = {B37661B8-101C-49C5-B934-BE4B8EA10FC0}
+		{03F9F89B-8EF1-4E82-B5B1-DA5F3DDC153B} = {B37661B8-101C-49C5-B934-BE4B8EA10FC0}
 	EndGlobalSection
 EndGlobal
