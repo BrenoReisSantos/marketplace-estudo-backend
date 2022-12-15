@@ -14,10 +14,37 @@ public class StoreModelConfig : IEntityTypeConfiguration<Store>
 
     public void Configure(EntityTypeBuilder<Store> builder)
     {
-        builder.HasKey(store => store.Id);
-        builder.Property(store => store.Id).HasConversion(StoreIdConverter);
-        builder.HasIndex(store => store.Cep).IsUnique();
-        builder.HasIndex(store => store.Cnpj).IsUnique();
+        builder
+            .HasKey(store => store.Id);
+
+        builder
+            .Property(store => store.Id)
+            .HasConversion(StoreIdConverter);
+
+        builder
+            .HasIndex(store => store.Cnpj);
+
+        builder
+            .HasIndex(store => store.Email)
+            .IsUnique();
+
+        builder
+            .Property(store => store.Name)
+            .HasMaxLength(60);
+
+        builder
+            .HasIndex(store => store.Phone)
+            .IsUnique();
+
+        builder
+            .Property(store => store.UserId)
+            .HasConversion(UserModelConfig.UserIdConverter);
+
+        builder
+            .HasMany<StoreReview>()
+            .WithOne()
+            .HasForeignKey(storeReview => storeReview.Id);
+
         builder
             .HasMany<Item>()
             .WithOne()

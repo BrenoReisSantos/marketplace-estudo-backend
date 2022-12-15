@@ -23,6 +23,10 @@ public class ItemModelConfig : IEntityTypeConfiguration<Item>
             .HasConversion(ItemIdConverter);
 
         builder
+            .Property(item => item.Name)
+            .HasMaxLength(60);
+
+        builder
             .HasOne<Store>()
             .WithMany()
             .HasForeignKey(item => item.StoreId);
@@ -30,5 +34,19 @@ public class ItemModelConfig : IEntityTypeConfiguration<Item>
         builder
             .Property(item => item.StoreId)
             .HasConversion(StoreModelConfig.StoreIdConverter);
+
+        builder
+            .HasMany<Category>()
+            .WithOne()
+            .HasForeignKey(category => category.Id);
+
+        builder
+            .Property(item => item.CategoryId)
+            .HasConversion(CategoryModelConfig.CategoryIdConverter);
+
+        builder
+            .HasMany<ItemReview>()
+            .WithOne()
+            .HasForeignKey(review => review.Id);
     }
 }

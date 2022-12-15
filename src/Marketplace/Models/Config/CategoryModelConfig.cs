@@ -22,11 +22,12 @@ public class CategoryModelConfig : IEntityTypeConfiguration<Category>
             .HasConversion(CategoryIdConverter);
 
         builder
-            .Property(category => category.Name);
-
-        builder
             .HasMany<Item>()
             .WithOne()
             .HasForeignKey(item => item.Id);
+
+        builder
+            .Property(item => item.Id)
+            .HasConversion(ItemModelConfig.ItemIdConverter);
     }
 }
