@@ -1,13 +1,15 @@
+using StronglyTypedIds;
+
 namespace Marketplace.Models.Entities;
 
 public class Category
 {
-    public CategoryId Id { get; init; } = CategoryId.New();
+    public CategoryId CategoryId { get; init; } = CategoryId.New();
     public string Name { get; init; } = string.Empty;
     public IEnumerable<Item> Items { get; init; } = Enumerable.Empty<Item>();
 }
 
-public record CategoryId(Guid Value)
+[StronglyTypedId]
+public partial struct CategoryId
 {
-    public static CategoryId New() => new(Guid.NewGuid());
 }

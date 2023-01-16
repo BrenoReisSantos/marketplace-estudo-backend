@@ -1,17 +1,21 @@
+using StronglyTypedIds;
+
 namespace Marketplace.Models.Entities;
 
 public class Item
 {
-    public ItemId Id { get; init; } = ItemId.New();
+    public ItemId ItemId { get; init; } = ItemId.New();
     public string Name { get; init; } = string.Empty;
     public decimal Price { get; set; }
     public string BarCode { get; init; } = string.Empty;
     public double Rating { get; set; }
-    public StoreId StoreId { get; init; } = new(Guid.Empty);
-    public CategoryId CategoryId { get; init; } = new(Guid.Empty);
+    public bool IsActive { get; init; }
+    public IEnumerable<Category> Categories { get; init; } = Enumerable.Empty<Category>();
+    public IEnumerable<Store> Stores { get; init; } = Enumerable.Empty<Store>();
+    public IEnumerable<ItemReview> ItemReviews { get; init; } = Enumerable.Empty<ItemReview>();
 }
 
-public record ItemId(Guid Value)
+[StronglyTypedId]
+public partial struct ItemId
 {
-    public static ItemId New() => new(Guid.NewGuid());
 }

@@ -1,8 +1,10 @@
+using StronglyTypedIds;
+
 namespace Marketplace.Models.Entities;
 
 public class Store
 {
-    public StoreId Id { get; init; } = StoreId.New();
+    public StoreId StoreId { get; init; } = StoreId.New();
     public string Cnpj { get; init; } = string.Empty;
     public string Email { get; init; } = string.Empty;
     public string Name { get; init; } = string.Empty;
@@ -10,11 +12,13 @@ public class Store
     public int Number { get; set; }
     public string Phone { get; init; } = string.Empty;
     public double Rating { get; set; }
-    public UserId UserId { get; init; } = UserId.New();
+    public bool IsActive { get; init; }
+    public User User { get; init; } = new User();
     public IEnumerable<Item> Items { get; init; } = Enumerable.Empty<Item>();
+    public IEnumerable<StoreReview> ItemReviews { get; init; } = Enumerable.Empty<StoreReview>();
 }
 
-public record StoreId(Guid Value)
+[StronglyTypedId]
+public partial struct StoreId
 {
-    public static StoreId New() => new(Guid.NewGuid());
 }
