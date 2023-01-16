@@ -1,6 +1,14 @@
+using StronglyTypedIds;
+
 namespace Marketplace.Models.Entities;
 
-public class StoreReview : BaseReview
+public class StoreReview
 {
-    public StoreId StoreId { get; init; } = StoreId.New();
+    public StoreReviewId StoreReviewId { get; init; } = StoreReviewId.New();
+    public Store Store { get; init; } = new Store();
+    public Review Review { get; init; } = new Review();
+
 }
+
+[StronglyTypedId]
+public partial struct StoreReviewId { }

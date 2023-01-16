@@ -7,19 +7,12 @@ namespace Marketplace.Models.Config;
 
 public class ItemReviewModelConfig : IEntityTypeConfiguration<ItemReview>
 {
-    public static readonly ValueConverter<ReviewId, Guid> ItemReviewIdValueConverter = new(
-        itemReviewId => itemReviewId.Value,
-        guid => new(guid)
-    );
     public void Configure(EntityTypeBuilder<ItemReview> builder)
     {
         builder
-            .HasKey(itemReview => itemReview.Id);
+            .Property(itemReview => itemReview.ItemReviewId)
+            .HasConversion<ItemReviewId.EfCoreValueConverter>();
 
-        builder
-            .Property(itemReview => itemReview.Id)
-            .HasConversion(ItemReviewIdValueConverter);
-
-        builder.HasOne<User>().WithOne().HasForeignKey<ItemReview>(itemReview => itemReview.UserId);
+        builder.OwnsOne(itemReview => itemReview.Review);
     }
 }

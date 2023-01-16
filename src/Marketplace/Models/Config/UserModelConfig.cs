@@ -7,19 +7,11 @@ namespace Marketplace.Models.Config;
 
 public class UserModelConfig : IEntityTypeConfiguration<User>
 {
-    public static readonly ValueConverter<UserId, Guid> UserIdConverter = new(
-        UserId => UserId.Value,
-        guid => new(guid)
-    );
-
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder
-            .HasKey(user => user.Id);
-
-        builder
-            .Property(user => user.Id)
-            .HasConversion(UserIdConverter);
+            .Property(user => user.UserId)
+            .HasConversion<UserId.EfCoreValueConverter>();
 
         builder
             .HasIndex(user => user.Cpf)

@@ -7,19 +7,11 @@ namespace Marketplace.Models.Config;
 
 public class StoreModelConfig : IEntityTypeConfiguration<Store>
 {
-    public static readonly ValueConverter<StoreId, Guid> StoreIdConverter = new(
-        storeId => storeId.Value,
-        guid => new(guid)
-    );
-
     public void Configure(EntityTypeBuilder<Store> builder)
     {
         builder
-            .HasKey(store => store.Id);
-
-        builder
-            .Property(store => store.Id)
-            .HasConversion(StoreIdConverter);
+            .Property(store => store.StoreId)
+            .HasConversion<StoreId.EfCoreValueConverter>();
 
         builder
             .HasIndex(store => store.Cnpj);
@@ -35,19 +27,5 @@ public class StoreModelConfig : IEntityTypeConfiguration<Store>
         builder
             .HasIndex(store => store.Phone)
             .IsUnique();
-
-        builder
-            .Property(store => store.UserId)
-            .HasConversion(UserModelConfig.UserIdConverter);
-
-        builder
-            .HasMany<StoreReview>()
-            .WithOne()
-            .HasForeignKey(storeReview => storeReview.Id);
-
-        builder
-            .HasMany<Item>()
-            .WithOne()
-            .HasForeignKey(item => item.Id);
     }
 }
