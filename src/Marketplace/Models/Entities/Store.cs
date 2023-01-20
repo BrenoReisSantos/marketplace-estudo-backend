@@ -13,7 +13,7 @@ public class Store
     public string Phone { get; init; } = string.Empty;
     public double Rating { get; set; }
     public bool IsActive { get; init; }
-    public User User { get; init; } = new User();
+    public User User { get; init; } = new();
     public IEnumerable<Item> Items { get; init; } = Enumerable.Empty<Item>();
     public IEnumerable<StoreReview> ItemReviews { get; init; } = Enumerable.Empty<StoreReview>();
 }

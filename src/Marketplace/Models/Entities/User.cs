@@ -10,19 +10,12 @@ public class User
     public string Phone { get; init; } = string.Empty;
     public bool IsActive { get; init; }
     public bool EmailConfirmed { get; init; }
-    public UserRole UserRole { get; init; } = UserRole.ConsumerOnly;
     public IEnumerable<ItemReview> ItemReviews = Enumerable.Empty<ItemReview>();
     public IEnumerable<StoreReview> StoreReviews = Enumerable.Empty<StoreReview>();
+    public UserRole UserRole = new();
 }
 
 [StronglyTypedId]
 public partial struct UserId
 {
-}
-
-public enum UserRole : byte
-{
-    ConsumerOnly,
-    Seller,
-    Administrator
 }
