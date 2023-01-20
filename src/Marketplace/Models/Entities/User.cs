@@ -11,6 +11,8 @@ public class User
     public bool IsActive { get; init; }
     public bool EmailConfirmed { get; init; }
     public UserRole UserRole { get; init; } = UserRole.ConsumerOnly;
+    public IEnumerable<ItemReview> ItemReviews = Enumerable.Empty<ItemReview>();
+    public IEnumerable<StoreReview> StoreReviews = Enumerable.Empty<StoreReview>();
 }
 
 [StronglyTypedId]
