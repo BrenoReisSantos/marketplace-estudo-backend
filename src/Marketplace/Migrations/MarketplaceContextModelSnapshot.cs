@@ -102,9 +102,14 @@ namespace Marketplace.Migrations
                     b.Property<Guid>("ItemId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("ItemReviewId");
 
                     b.HasIndex("ItemId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("ItemReviews");
                 });
@@ -170,9 +175,14 @@ namespace Marketplace.Migrations
                     b.Property<Guid>("StoreId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("StoreReviewId");
 
                     b.HasIndex("StoreId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("StoreReviews");
                 });
@@ -255,6 +265,12 @@ namespace Marketplace.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Marketplace.Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.OwnsOne("Marketplace.Models.Entities.Review", "Review", b1 =>
                         {
                             b1.Property<Guid>("ItemReviewId")
@@ -266,31 +282,20 @@ namespace Marketplace.Migrations
                             b1.Property<double>("Rating")
                                 .HasColumnType("double precision");
 
-                            b1.Property<Guid>("UserId")
-                                .HasColumnType("uuid");
-
                             b1.HasKey("ItemReviewId");
-
-                            b1.HasIndex("UserId");
 
                             b1.ToTable("ItemReviews");
 
                             b1.WithOwner()
                                 .HasForeignKey("ItemReviewId");
-
-                            b1.HasOne("Marketplace.Models.Entities.User", "User")
-                                .WithMany()
-                                .HasForeignKey("UserId")
-                                .OnDelete(DeleteBehavior.Cascade)
-                                .IsRequired();
-
-                            b1.Navigation("User");
                         });
 
                     b.Navigation("Item");
 
                     b.Navigation("Review")
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Marketplace.Models.Entities.Store", b =>
@@ -312,6 +317,12 @@ namespace Marketplace.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Marketplace.Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.OwnsOne("Marketplace.Models.Entities.Review", "Review", b1 =>
                         {
                             b1.Property<Guid>("StoreReviewId")
@@ -323,31 +334,20 @@ namespace Marketplace.Migrations
                             b1.Property<double>("Rating")
                                 .HasColumnType("double precision");
 
-                            b1.Property<Guid>("UserId")
-                                .HasColumnType("uuid");
-
                             b1.HasKey("StoreReviewId");
-
-                            b1.HasIndex("UserId");
 
                             b1.ToTable("StoreReviews");
 
                             b1.WithOwner()
                                 .HasForeignKey("StoreReviewId");
-
-                            b1.HasOne("Marketplace.Models.Entities.User", "User")
-                                .WithMany()
-                                .HasForeignKey("UserId")
-                                .OnDelete(DeleteBehavior.Cascade)
-                                .IsRequired();
-
-                            b1.Navigation("User");
                         });
 
                     b.Navigation("Review")
                         .IsRequired();
 
                     b.Navigation("Store");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Marketplace.Models.Entities.Item", b =>
